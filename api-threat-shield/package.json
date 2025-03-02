@@ -1,0 +1,40 @@
+{
+  "name": "api-threat-shield",
+  "version": "1.0.0",
+  "description": "API threat detection middleware with Gemini integration",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "src/middleware/ApiThreatShield.js"
+  ],
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node test/test-attack.js",
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [
+    "api",
+    "security",
+    "middleware",
+    "threat-detection",
+    "honeypot",
+    "gemini"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "@google/generative-ai": "^0.22.0",
+    "api-threat-shield": "^1.0.0",
+    "axios": "^1.8.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "mongo-sanitize": "^1.1.0",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}

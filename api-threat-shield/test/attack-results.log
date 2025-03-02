@@ -1,0 +1,84 @@
+
+=== Attack Test - 2025-03-02T04:07:23.549Z ===
+[SQL Injection] http://localhost:4000/api/users?id=1 UNION SELECT username,password FROM users -> Allowed ⚠️
+[XSS] http://localhost:4000/api/data -> Allowed ⚠️
+[Path Traversal] http://localhost:4000/api/users?file=../../../etc/passwd -> Allowed ⚠️
+[NoSQL Injection] http://localhost:4000/api/data -> Allowed ⚠️
+[SSRF] http://localhost:4000/api/data -> Allowed ⚠️
+[RCE] http://localhost:4000/api/data -> Allowed ⚠️
+
+=== Attack Test - 2025-03-02T04:09:00.580Z ===
+[SQL Injection] http://localhost:4000/api/users?id=1 UNION SELECT username,password FROM users -> ERROR: Request failed with status code 403
+[XSS] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+[Path Traversal] http://localhost:4000/api/users?file=../../../etc/passwd -> ERROR: Request failed with status code 403
+[NoSQL Injection] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+[SSRF] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+[RCE] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+
+=== Attack Test - 2025-03-02T04:20:58.554Z ===
+[SQL Injection] http://localhost:4000/api/users?id=1 UNION SELECT username,password FROM users -> ERROR: Request failed with status code 403
+[XSS] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+[Path Traversal] http://localhost:4000/api/users?file=../../../etc/passwd -> ERROR: Request failed with status code 403
+[NoSQL Injection] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+[SSRF] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+[RCE] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+
+=== Attack Test - 2025-03-02T04:23:09.241Z ===
+[SQL Injection] http://localhost:4000/api/users?id=1 UNION SELECT username,password FROM users -> ERROR: Request failed with status code 403
+[XSS] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+[Path Traversal] http://localhost:4000/api/users?file=../../../etc/passwd -> ERROR: Request failed with status code 403
+[NoSQL Injection] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+[SSRF] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+[RCE] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+
+=== Attack Test - 2025-03-02T04:25:15.775Z ===
+[SQL Injection] http://localhost:4000/api/users?id=1 UNION SELECT username,password FROM users -> ERROR: Request failed with status code 403
+[XSS] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+[Path Traversal] http://localhost:4000/api/users?file=../../../etc/passwd -> ERROR: Request failed with status code 403
+[NoSQL Injection] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+[SSRF] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+[RCE] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+
+=== Attack Test - 2025-03-02T04:27:30.324Z ===
+[SQL Injection] http://localhost:4000/api/users?id=1 UNION SELECT username,password FROM users -> ERROR: Request failed with status code 403
+[XSS] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+[Path Traversal] http://localhost:4000/api/users?file=../../../etc/passwd -> ERROR: Request failed with status code 403
+[NoSQL Injection] http://localhost:4000/api/data -> Allowed ⚠️
+[SSRF] http://localhost:4000/api/data -> Allowed ⚠️
+[RCE] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+
+=== Attack Test - 2025-03-02T04:37:32.259Z ===
+[SQL Injection] http://localhost:4000/api/users?id=1 UNION SELECT username,password FROM users -> ERROR: Request failed with status code 403
+[XSS] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+[Path Traversal] http://localhost:4000/api/users?file=../../../etc/passwd -> ERROR: Request failed with status code 403
+[NoSQL Injection] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+[SSRF] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+[RCE] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+
+=== Attack Test - 2025-03-02T04:41:31.161Z ===
+[SQL Injection] http://localhost:4000/api/users?id=1 UNION SELECT username,password FROM users -> ERROR: Request failed with status code 403
+[XSS] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+[Path Traversal] http://localhost:4000/api/users?file=../../../etc/passwd -> ERROR: Request failed with status code 403
+[NoSQL Injection] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+[SSRF] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+[RCE] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+
+=== Attack Test - 2025-03-02T04:43:59.948Z ===
+[SQL Injection] http://localhost:4000/api/users?id=1 UNION SELECT username,password FROM users -> ERROR: Request failed with status code 403
+[XSS] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+[Path Traversal] http://localhost:4000/api/users?file=../../../etc/passwd -> ERROR: Request failed with status code 403
+[NoSQL Injection] http://localhost:4000/api/data -> Allowed ⚠️
+[SSRF] http://localhost:4000/api/data -> Allowed ⚠️
+[RCE] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+
+=== Attack Test - 2025-03-02T04:48:01.540Z ===
+[SQL Injection] http://localhost:4000/api/users?id=1 UNION SELECT username,password FROM users -> ERROR: Request failed with status code 403
+[XSS] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+[Path Traversal] http://localhost:4000/api/users?file=../../../etc/passwd -> ERROR: Request failed with status code 403
+[RCE] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+
+=== Attack Test - 2025-03-02T04:54:24.041Z ===
+[SQL Injection] http://localhost:4000/api/users?id=1 UNION SELECT username,password FROM users -> ERROR: Request failed with status code 403
+[XSS] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
+[Path Traversal] http://localhost:4000/api/users?file=../../../etc/passwd -> ERROR: Request failed with status code 403
+[RCE] http://localhost:4000/api/data -> ERROR: Request failed with status code 403
