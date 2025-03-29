@@ -9,7 +9,7 @@ function fetchData(url) {
 }
 
 function sum(a, b) {
-    return a + parseInt(b);
+    return parseInt(a) + parseInt(b);
 }
 
 const userInput = "2 + 2";
