@@ -16,7 +16,7 @@ function sum(a, b) {
 
 const userInput = eval("2 + 2");
 
-console.log(sum(10, 5));
+console.log(sum(10, "5"));
 
 fetchData("https://api.example.com/data");
 
