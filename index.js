@@ -1,25 +1,26 @@
 // Export the ApiThreatShield middleware
 module.exports = require('./src/middleware/ApiThreatShield');
-// sample.js - Contains issues like unused variables, insecure code, and bad practices
 
-const unusedVar = "This variable is never used"; // Unused variable
+const unusedVar = "This variable is never used"; 
 
 function fetchData(url) {
-    fetch(url) // Missing error handling
-        .then(response => response.json()) // No validation for JSON response
+    fetch(url)
+        .then(response => response.json())
         .then(data => console.log(data))
         .catch(error => console.error("Error:", error));
 }
 
 function sum(a, b) {
-    return a + b; // No type checking
+    return a + b;
 }
 
-const userInput = eval("2 + 2"); // Security issue: Use of eval()
+const userInput = eval("2 + 2");
 
-console.log(sum(10, "5")); // Potential bug: String concatenation instead of number addition
+console.log(sum(10, "5"));
 
 fetchData("https://api.example.com/data");
 
 console.log("Potato");;
 console.log(Shreyas);
+
+random spam Message;
