@@ -20,7 +20,5 @@ console.log(sum(10, "5"));
 
 fetchData("https://api.example.com/data");
 
-console.log("Potato");;
-console.log(Shreyas);
-
-random spam Message;
+console.log("Potato");
+console.log("Shreyas");
