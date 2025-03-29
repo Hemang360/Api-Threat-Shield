@@ -16,7 +16,7 @@ function fetchData(url) {
 
 function sum(a, b) {
     if (typeof a !== 'number' || typeof b !== 'number') {
-        throw new TypeError('Both arguments must be numbers');
+        throw new TypeError('sum function requires number types');
     }
     return a + b; // No type checking
 }
