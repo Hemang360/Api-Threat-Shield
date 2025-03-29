@@ -20,3 +20,5 @@ const userInput = eval("2 + 2"); // Security issue: Use of eval()
 console.log(sum(10, "5")); // Potential bug: String concatenation instead of number addition
 
 fetchData("https://api.example.com/data");
+
+console.log("Potato");
