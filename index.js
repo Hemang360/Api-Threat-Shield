@@ -9,13 +9,14 @@ function fetchData(url) {
 }
 
 function sum(a, b) {
-    return a + parseInt(b);
+    return a + b;
 }
 
-const userInput = 2 + 2;
+const userInput = eval("2 + 2");
 
-console.log(sum(10, "5"));
+console.log(sum(10, parseInt("5")));
 
 fetchData("https://api.example.com/data");
 
 console.log("Potato");
+console.log("Shreyas");
