@@ -1,9 +1,11 @@
+let ApiThreatShield;
 try {
-    // Export the ApiThreatShield middleware
-    module.exports = require('./src/middleware/ApiThreatShield');
+    ApiThreatShield = require('./src/middleware/ApiThreatShield');
 } catch (error) {
-    console.error("Failed to import ApiThreatShield:", error);
+    console.error("Failed to load ApiThreatShield:", error);
+    // Provide a fallback or handle the error as needed
 }
+module.exports = ApiThreatShield;
 
 const unusedVar = "This variable is never used"; 
 
@@ -25,4 +27,3 @@ console.log(sum(10, "5"));
 fetchData("https://api.example.com/data");
 
 console.log("Potato");
-console.log("Shreyas");
