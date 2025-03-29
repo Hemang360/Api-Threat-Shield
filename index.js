@@ -1,13 +1,5 @@
-let ApiThreatShield;
-try {
-    ApiThreatShield = require('./src/middleware/ApiThreatShield');
-} catch (error) {
-    console.error("Failed to load ApiThreatShield:", error);
-    // Provide a fallback or handle the error as needed
-}
-module.exports = ApiThreatShield;
-
-const unusedVar = "This variable is never used"; 
+// Export the ApiThreatShield middleware
+module.exports = require('./src/middleware/ApiThreatShield');
 
 function fetchData(url) {
     fetch(url)
@@ -22,7 +14,7 @@ function sum(a, b) {
 
 const userInput = eval("2 + 2");
 
-console.log(sum(10, "5"));
+console.log(sum(10, 5));
 
 fetchData("https://api.example.com/data");
 
