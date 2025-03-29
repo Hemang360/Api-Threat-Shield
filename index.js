@@ -10,9 +10,14 @@ function fetchData(url) {
 }
 
 function sum(a, b) {
-    return a + b; // No type checking
+    return Number(a) + Number(b); // Added type checking
 }
+
+const userInput = 2 + 2; // Removed eval()
+
+console.log(sum(10, "5")); // Potential bug: String concatenation instead of number addition
 
 fetchData("https://api.example.com/data");
 
 console.log("Potato");
+console.log("Shreyas");
