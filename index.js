@@ -21,4 +21,4 @@ console.log(sum(10, "5")); // Potential bug: String concatenation instead of num
 
 fetchData("https://api.example.com/data");
 
-console.log("Potato");
+console.log("Potato");;
