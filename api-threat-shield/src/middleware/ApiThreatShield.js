@@ -9,16 +9,16 @@ class ApiThreatShield {
       geminiApiKey: options.geminiApiKey || '',
       geminiEndpoint: options.geminiEndpoint || 'generativelanguage.googleapis.com',
       rateLimit: options.rateLimit || 100,
-      banDuration: options.banDuration || 10 * 60 * 1000, // 10-minute ban
+      banDuration: options.banDuration || 10 * 60 * 1000, 
       sensitivePatterns: options.sensitivePatterns || [
-        /\b(?:union\s+select|select\s+\*?\s+from)\b/i, // SQL Injection (more refined)
-        /\b(?:exec\s*\(|update\s+.*\s+set)\b/i, // SQL Execution (safer)
-        /<script\b.*?>.*?<\/script>/i, // XSS
-        /\bdocument\.cookie\b/i, // XSS
-        /(?:\/etc\/passwd|\/bin\/sh|\/bin\/bash)/i, // Path Traversal / Sensitive File Access
-        /\.{3,}\//i, // Path Traversal
-        /(?:\$\{.*?\}|\b(?:eval|exec|system|popen)\b\s*\()/i, // Code Execution Injection
-        /(?:;|\||\&|`|\$\(.+\))\s*(?:wget|curl|nc|bash|sh|python|perl)\b/i // RCE
+        /\b(?:union\s+select|select\s+\*?\s+from)\b/i, 
+        /\b(?:exec\s*\(|update\s+.*\s+set)\b/i,
+        /<script\b.*?>.*?<\/script>/i,
+        /\bdocument\.cookie\b/i,
+        /(?:\/etc\/passwd|\/bin\/sh|\/bin\/bash)/i,
+        /\.{3,}\//i,
+        /(?:\$\{.*?\}|\b(?:eval|exec|system|popen)\b\s*\()/i,
+        /(?:;|\||\&|`|\$\(.+\))\s*(?:wget|curl|nc|bash|sh|python|perl)\b/i 
       ],
       logAttacks: options.logAttacks !== false,
       debug: options.debug || false
@@ -36,19 +36,18 @@ class ApiThreatShield {
       this.clearExpiredBans();
 
       if (this.options.debug) {
-        console.log(`📝 Checking request ${requestId} from ${clientIP}: ${req.method} ${req.path}`);
+        console.log(` Checking request ${requestId} from ${clientIP}: ${req.method} ${req.path}`);
       }
 
       if (this.bannedIPs.has(clientIP)) {
-        console.log(`🚫 IP ${clientIP} is banned, blocking request.`);
+        console.log(` IP ${clientIP} is banned, blocking request.`);
         return res.status(403).json({ error: 'Access denied' });
       }
 
       const matchedPattern = this.getMatchedPattern(req);
       if (matchedPattern) {
-        console.log(`🔍 Suspicious pattern detected: ${matchedPattern} in request from ${clientIP}`);
+        console.log(` Suspicious pattern detected: ${matchedPattern} in request from ${clientIP}`);
         this.logAttack(requestId, clientIP, 'pattern_match', req);
-        //this.banIP(clientIP);
         return res.status(403).json({ error: 'Attack detected and blocked' });
       }
 
@@ -56,13 +55,13 @@ class ApiThreatShield {
         try {
           const isThreat = await this.analyzeWithGemini(req);
           if (isThreat) {
-            console.log(`🤖 AI detected threat: ${req.originalUrl}`);
+            console.log(` AI detected threat: ${req.originalUrl}`);
             this.logAttack(requestId, clientIP, 'ai_detection', req);
             this.banIP(clientIP);
             return res.status(403).json({ error: 'Threat detected by AI' });
           }
         } catch (error) {
-          console.error('❗ Gemini API error:', error.message);
+          console.error(' Gemini API error:', error.message);
         }
       }
 
@@ -72,11 +71,11 @@ class ApiThreatShield {
 
   getMatchedPattern(req) {
     const content = `${req.originalUrl} ${JSON.stringify(req.body)} ${JSON.stringify(req.query)} ${JSON.stringify(req.params)}`;
-    if (this.options.debug) console.log(`🔍 Checking request content: ${content}`);
+    if (this.options.debug) console.log(` Checking request content: ${content}`);
 
     for (const pattern of this.options.sensitivePatterns) {
       if (pattern.test(content)) {
-        return pattern.toString(); // Return the matched pattern for debugging
+        return pattern.toString(); 
       }
     }
     return null;
@@ -103,13 +102,13 @@ class ApiThreatShield {
 
       return response.data.candidates[0]?.content?.parts[0]?.text.includes('THREAT');
     } catch (error) {
-      console.error('❗ Gemini API error:', error.message);
+      console.error(' Gemini API error:', error.message);
       return false;
     }
   }
 
   banIP(ip) {
-    console.log(`🚨 Banning IP: ${ip}`);
+    console.log(` Banning IP: ${ip}`);
     this.bannedIPs.set(ip, Date.now());
   }
 
@@ -117,14 +116,14 @@ class ApiThreatShield {
     const now = Date.now();
     this.bannedIPs.forEach((timestamp, ip) => {
       if (now - timestamp > this.options.banDuration) {
-        console.log(`✅ Unbanning IP: ${ip}`);
+        console.log(` Unbanning IP: ${ip}`);
         this.bannedIPs.delete(ip);
       }
     });
   }
 
   logAttack(requestId, clientIP, detectionMethod, req) {
-    console.log(`🚨 Attack detected: ${detectionMethod} - ${req.originalUrl} from ${clientIP}`);
+    console.log(` Attack detected: ${detectionMethod} - ${req.originalUrl} from ${clientIP}`);
     this.suspiciousRequests.push({ id: requestId, ip: clientIP, method: req.method, path: req.path });
   }
 

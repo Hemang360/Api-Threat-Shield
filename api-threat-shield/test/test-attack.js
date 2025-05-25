@@ -7,7 +7,7 @@ const apiUrl = 'http://localhost:4000';
 const logFile = path.join(__dirname, 'attack-results.log');
 
 async function testAttacks() {
-    console.log('🧪 Running attack tests...');
+    console.log(' Running attack tests...');
     let logData = `\n=== Attack Test - ${new Date().toISOString()} ===\n`;
 
     const attackCases = [
@@ -26,18 +26,18 @@ async function testAttacks() {
             });
 
             const isBlocked = response.status === 302 || response.data?.redirected;
-            const result = isBlocked ? 'Blocked 🚫' : 'Allowed ⚠️';
+            const result = isBlocked ? 'Blocked ' : 'Allowed ';
 
-            console.log(`✅ ${attack.type} test: ${result}`);
+            console.log(` ${attack.type} test: ${result}`);
             logData += `[${attack.type}] ${attack.url} -> ${result}\n`;
         } catch (error) {
-            console.error(`❗ ${attack.type} test error:`, error.message);
+            console.error(` ${attack.type} test error:`, error.message);
             logData += `[${attack.type}] ${attack.url} -> ERROR: ${error.message}\n`;
         }
     }
 
     fs.appendFileSync(logFile, logData);
-    console.log('📝 Results logged in attack-results.log');
+    console.log(' Results logged in attack-results.log');
 }
 
 testAttacks();

@@ -6,7 +6,7 @@
 
 - **Real-time Threat Detection**: Monitors incoming API requests for malicious activity.
 - **Honeypot Integration**: Redirects attackers to a honeypot for further tracking.
-- **AI-Powered Analysis**: Uses Google Gemini AI (optional) to enhance threat detection.
+- **AI-Powered Analysis**: Uses Google Gemini AI to enhance threat detection.
 - **Easy Integration**: Simple middleware setup for Express applications.
 
 ## Installation

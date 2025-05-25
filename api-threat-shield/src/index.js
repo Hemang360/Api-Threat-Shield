@@ -14,17 +14,15 @@ function logSecurityEvent(event) {
     fs.appendFileSync(logFile, `[${timestamp}] ${event}\n`);
 }
 
-// 🛡️ **Injection Prevention**
 function detectInjection(req, res, next) {
     req.body = sanitize(req.body);
     logSecurityEvent(`Sanitized Request: ${req.method} ${req.url}`);
     next();
 }
 
-// 🚀 **Rate Limiting (Brute Force & API Abuse Protection)**
 const rateLimiter = rateLimit({
-    windowMs: 60 * 1000, // 1 minute
-    max: 50, // Limit each IP to 50 requests
+    windowMs: 60 * 1000,
+    max: 50,
     message: { error: 'Too many requests, try again later.' },
     handler: (req, res) => {
         logSecurityEvent(`Rate Limit Exceeded: ${req.ip}`);
@@ -35,27 +33,26 @@ const rateLimiter = rateLimit({
 const app = express();
 app.use(express.json());
 
-// 🔐 **Apply Security Enhancements**
-app.use(helmet()); // Secure HTTP headers
+
+app.use(helmet()); 
 app.use(cors({ origin: ['https://yourdomain.com'], methods: ['GET', 'POST'] }));
 app.use(detectInjection);
 app.use(rateLimiter);
 
-// ✅ **Initialize the Threat Shield Middleware**
 const threatShield = new ApiThreatShield({
     honeypotUrl: 'http://localhost:3001',
     useGemini: true,
     geminiApiKey: process.env.GEMINI_API_KEY || '',
     rateLimit: 50,
     sensitivePatterns: [
-        /\bunion\s+select\b/i, // More strict SQLi detection
+        /\bunion\s+select\b/i, 
     /\bexec\s*\(/i,
     /<script>/i,
     /\bdocument\.cookie\b/i,
     /\/etc\/passwd/i,
-    /\.{3,}\//i, // Require at least three dots for Path Traversal
-    /\$ne|gt|lt|in/i, // NoSQL injection
-    /(curl|wget|nc|bash|sh|python|perl)/i // RCE
+    /\.{3,}\//i, 
+    /\$ne|gt|lt|in/i, 
+    /(curl|wget|nc|bash|sh|python|perl)/i 
     ],
     debug: false
 });
@@ -77,24 +74,21 @@ app.post('/api/data', (req, res) => {
     res.json({ success: true, message: 'Data received' });
 });
 
-// 🔍 **Admin Route for Security Logs**
+
 app.get('/admin/logs', (req, res) => {
     res.json(threatShield.getLogs());
 });
 
-// 🚀 **Start the Main API Server**
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
-    console.log(`🚀 API server running on port ${PORT}`);
+    console.log(` API server running on port ${PORT}`);
 });
 
-// 🍯 **Honeypot Server Setup**
 const honeypot = express();
 honeypot.use(express.json());
 
-// 📌 **Log Honeypot Requests**
 honeypot.use((req, res, next) => {
-    console.log('🍯 Honeypot accessed:', {
+    console.log(' Honeypot accessed:', {
         method: req.method,
         path: req.path,
         query: req.query,
@@ -104,7 +98,6 @@ honeypot.use((req, res, next) => {
     next();
 });
 
-// 🌐 **Generic Response for Honeypot**
 honeypot.all('*', (req, res) => {
     res.json({
         status: 'success',
@@ -116,8 +109,7 @@ honeypot.all('*', (req, res) => {
     });
 });
 
-// ✅ **Start the Honeypot Server**
 const HONEYPOT_PORT = process.env.HONEYPOT_PORT || 3001;
 honeypot.listen(HONEYPOT_PORT, () => {
-    console.log(`🍯 Honeypot server running on port ${HONEYPOT_PORT}`);
+    console.log(` Honeypot server running on port ${HONEYPOT_PORT}`);
 });
